@@ -1,6 +1,7 @@
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var exphbs = require("express-handlebars");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
@@ -26,20 +27,29 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
+app.set("view engine", "handlebars");
+
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/webScraper", { useNewUrlParser: true });
 
 // Routes
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("https://blog.newrelic.com/engineering/best-javascript-libraries-frameworks/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
+    
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("article h3").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
@@ -50,6 +60,8 @@ app.get("/scrape", function(req, res) {
       result.link = $(this)
         .children("a")
         .attr("href");
+      result.text = $(this).children("p").text().trim();
+     
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
@@ -64,7 +76,10 @@ app.get("/scrape", function(req, res) {
     });
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    // res.send("Scrape Complete");
+    res.render("index", {
+      article: dbArticle
+    });
   });
 });
 
