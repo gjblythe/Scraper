@@ -1,0 +1,40 @@
+body {
+  background-image: url("/public/images/triangular_@2X.png");
+  font-family: "Roboto", sans-serif;
+}
+#wrapper {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+}
+#articles {
+  display: inline-block;
+  background: #ffffff;
+  text-align: center;
+  overflow: auto;
+  width: 60%;
+  height: 700px;
+  border: 5px solid black;
+}
+h1 {
+  text-align: center;
+}
+#notes {
+  float: right;
+  width: 30%;
+}
+textarea,
+input {
+  display: block;
+  width: 100%;
+  background-color: #ebebeb;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}

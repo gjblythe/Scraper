@@ -12,10 +12,10 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
+var PORT = process.env.PORT || 3000;
 
 // Configure middleware
 
@@ -27,14 +27,15 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-app.set("view engine", "handlebars");
 
 app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "main"
   })
-);
+  );
+  app.set("view engine", "handlebars");
+  require("./htmlroute")(app);
 
 var MONGODB_URI = process.env.MONGODB_URI || 
 "mongodb://localhost/webScraper";
@@ -80,10 +81,8 @@ app.get("/scrape", function(req, res) {
     });
 
     // Send a message to the client
-    // res.send("Scrape Complete");
-    res.render("index", {
-      article: dbArticle
-    });
+    res.send("Scrape Complete");
+   
   });
 });
 
