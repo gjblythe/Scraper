@@ -35,8 +35,12 @@ app.engine(
     defaultLayout: "main"
   })
 );
+
+var MONGODB_URI = process.env.MONGODB_URI || 
+"mongodb://localhost/webScraper";
+
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/webScraper", { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
