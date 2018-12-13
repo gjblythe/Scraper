@@ -2,6 +2,9 @@ body {
   background-image: url("../images/triangular_@2X.png");
   font-family: "Roboto", sans-serif;
 }
+.nav {
+  background: #ffffff;
+}
 #wrapper {
   width: 960px;
   margin-left: auto;
