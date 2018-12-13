@@ -42,7 +42,7 @@ var MONGODB_URI = process.env.MONGODB_URI ||
 "mongodb://localhost/webScraper";
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
