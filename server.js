@@ -36,7 +36,7 @@ app.engine(
   );
   
   app.set("view engine", "handlebars");
-  require("./htmlroute")(app);
+  require("./htmlRoute")(app);
 
 var MONGODB_URI = process.env.MONGODB_URI || 
 "mongodb://localhost/webScraper";
@@ -46,7 +46,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the newrelic website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
   axios.get("https://blog.newrelic.com/engineering/best-javascript-libraries-frameworks/").then(function(response) {
@@ -80,9 +80,13 @@ app.get("/scrape", function(req, res) {
           console.log(err);
         });
     });
+      res.render("scrape", {
+          msg: "Scrape is now complete."
+        })
+      .then(res.send())
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    
    
   });
 });

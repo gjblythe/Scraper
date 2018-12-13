@@ -1,4 +1,4 @@
-var db = require("./models/");
+var db = require("./models");
 
 module.exports = function(app) {
   // Load index page
@@ -11,9 +11,9 @@ module.exports = function(app) {
     console.log(dbArticles);
     });
   });
-  app.get("/scrape", function(req,res){
-    res.render("scrape", {
-      msg: "Scrape is now complete."
-    })
-  })
+  // app.get("/scrape", function(req,res){
+  //   res.render("scrape", {
+  //     msg: "Scrape is now complete."
+  //   })
+  // })
 };
