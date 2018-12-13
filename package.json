@@ -4,8 +4,8 @@
   "description": "app that scapes a specific web page",
   "main": "server.js",
   "engines": {
-    "node": "0.10.41",
-    "npm": "1.4.29"
+    "node": "0.10.5",
+    "npm": "6.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
