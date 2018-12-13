@@ -1,5 +1,5 @@
 body {
-  background-image: url("/public/images/triangular_@2X.png");
+  background-image: url("../images/triangular_@2X.png");
   font-family: "Roboto", sans-serif;
 }
 #wrapper {
