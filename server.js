@@ -26,7 +26,7 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-var db = require("./models/Index");
+var db = require("./models/index");
 
 app.engine(
   "handlebars",
